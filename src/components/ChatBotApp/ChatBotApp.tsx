@@ -28,7 +28,7 @@ export default class ChatBotApp extends Component<
     return (
       <section className={classes!.botContainer}>
         <ChatBot
-          headerTitle={'מידעת - בוט תשובות ושאלות'}
+          headerTitle={'מדעת - בוט תשובות ושאלות'}
           botAvatar={
             'https://cdn1.iconfinder.com/data/icons/bots/280/bot-10-2-512.png'
           }
