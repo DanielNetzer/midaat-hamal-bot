@@ -1,44 +1,27 @@
-import * as React from 'react';
-import ChatBot from 'react-simple-chatbot';
-import { VonageAIMsg } from '../VonageAIMsg/VonageAIMsg';
+import React, { Component } from 'react';
+import ChatBotApp from '../ChatBotApp/ChatBotApp';
+import AuthContainer from '../AuthContainer/AuthContainer';
 
-interface ChatBotContainerProps {}
-
-interface ChatBotContainerState {}
-
-export default class ChatBotContainer extends React.Component<
-  ChatBotContainerProps & ChatBotContainerState
-> {
-  public state: ChatBotContainerState = {};
+interface IProps {}
+export default class ChatBotContainer extends Component<IProps> {
+  public state = {
+    isAuthorized: false
+  };
 
   public render() {
-    return <ChatBot steps={this.getBotSteps()} />;
+    return this.state.isAuthorized ? (
+      <ChatBotApp />
+    ) : (
+      <AuthContainer onFormSubmit={this.validateAuth} />
+    );
   }
 
-  private getBotSteps = () => {
-    return [
-      {
-        id: 'welcome',
-        message: 'ברוכים הבאים לחמ״ל קורונה מקבוצת מדעת, מה תרצו לדעת?',
-        trigger: 'query'
-      },
-      {
-        id: 'query',
-        user: true,
-        trigger: 'vgai'
-      },
-      {
-        id: 'vgai',
-        component: <VonageAIMsg />,
-        waitAction: true,
-        asMessage: true,
-        replace: true,
-        trigger: ({ value, steps }: { value: string; steps: any }) => {
-          console.log(value, steps);
-          return 'welcome';
-        },
-        delay: 0
-      }
-    ];
+  private validateAuth = (user: string, pass: string) => {
+    // if(user === "midaatchatbot" && pass === "!WhatsappDoc!1") {
+    if (user === '1' && pass === '1') {
+      const newState = this.state;
+      newState.isAuthorized = true;
+      this.setState(newState);
+    }
   };
 }
