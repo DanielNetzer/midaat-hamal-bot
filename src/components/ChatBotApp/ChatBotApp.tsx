@@ -28,6 +28,8 @@ export default class ChatBotApp extends React.Component<
         return (
             <section className={classes!.botContainer}>
                 <ChatBot
+                    headerTitle={"מידעת - בוט תשובות ושאלות"}
+                    botAvatar={"http://midaat.org.il/wp-content/uploads/2020/03/Logo-for-web2@2x.png"}
                     steps={this.getBotSteps()} />
             </section>
         );
@@ -48,35 +50,6 @@ export default class ChatBotApp extends React.Component<
                 id: 2,
                 message: "X",
             }
-            // {
-            //     id: '2',
-            //     message: async ({ value }: { value: string }) => {
-            //         const body = JSON.stringify({
-            //             userId: 'midaat',
-            //             input: value,
-            //             sessionId
-            //         });
-            //
-            //         const httpResponse = await fetch('https://api.over.ai/api/ai/call', {
-            //             method: 'POST',
-            //             body,
-            //             headers: {
-            //                 'api-key': apiKey,
-            //                 'Content-Type': 'application/json'
-            //             }
-            //         });
-            //
-            //         const nluResponse = await httpResponse.json();
-            //         console.log(nluResponse);
-            //         const botResponse = nluResponse.say.sentencesAsOneLine;
-            //         console.log(botResponse);
-            //         return botResponse;
-            //     },
-            //     trigger: async ({ value }: { value: string }) => {
-            //         console.log(value);
-            //         return '0';
-            //     }
-            // }
         ];
 
     }
