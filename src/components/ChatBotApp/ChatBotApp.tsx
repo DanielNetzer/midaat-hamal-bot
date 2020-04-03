@@ -13,7 +13,7 @@ const styles: StyleRulesCallback = ({ palette, spacing }) => ({
   botContainer: {
     display: 'flex',
     justifyContent: 'flex-end',
-    marginTop: 'auto'
+    margin: 'auto'
   }
 });
 
@@ -30,8 +30,11 @@ export default class ChatBotApp extends Component<
         <ChatBot
           headerTitle={'מידעת - בוט תשובות ושאלות'}
           botAvatar={
-            'http://midaat.org.il/wp-content/uploads/2020/03/Logo-for-web2@2x.png'
+            'https://cdn1.iconfinder.com/data/icons/bots/280/bot-10-2-512.png'
           }
+          width={'100vw'}
+          height={'100vh'}
+          placeholder="הקלד את ההודעה..."
           steps={this.getBotSteps()}
         />
       </section>
@@ -41,8 +44,9 @@ export default class ChatBotApp extends Component<
     return [
       {
         id: 'welcome',
-        message: 'ברוכים הבאים לחמ״ל קורונה מקבוצת מדעת, מה תרצו לדעת?',
-        trigger: 'query'
+        component: <VonageAIMsg />,
+        waitAction: true,
+        asMessage: true
       },
       {
         id: 'query',

@@ -12,7 +12,7 @@ interface VonageAIState {
 export class VonageAIMsg extends Component<any, VonageAIState> {
   constructor(props: any) {
     super(props);
-
+    console.log(props);
     this.state = {
       loading: true,
       result: '',
@@ -38,11 +38,16 @@ export class VonageAIMsg extends Component<any, VonageAIState> {
   }
 
   async componentDidMount() {
-    const { previousStep } = this.props;
+    const { previousStep, step } = this.props;
     const { sessionId, apiKey } = this.state;
+
+    const input = step.id === 'welcome' ? 'היי' : previousStep.value;
+
+    console.log(input);
+
     const body = JSON.stringify({
       userId: 'midaat',
-      input: previousStep.value,
+      input,
       sessionId
     });
 
@@ -58,13 +63,11 @@ export class VonageAIMsg extends Component<any, VonageAIState> {
     const nluResponse = await httpResponse.json();
     const botResponse: string = nluResponse.say.sentencesAsOneLine;
 
-    // TODO: if bot response contain 'לא הצלחתי להבין' should trigger a new question,
-    // if bot response is an answer should trigger 'should_another_question' step...
-
     this.setState({ result: botResponse, loading: false });
 
+    // if welcome step or rephrase required, let's trigger query
     let stepId: string;
-    if (botResponse.includes('לנסח')) {
+    if (botResponse.includes('לנסח') || step.id === 'welcome') {
       stepId = 'query';
     } else if (botResponse.includes('תישארו בבית')) {
       stepId = 'end';

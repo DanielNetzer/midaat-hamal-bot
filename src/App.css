@@ -1,0 +1,11 @@
+.rsc-ts-bot .rsc-ts-bubble {
+    border-radius: 18px 18px 0px 18px !important;
+}
+
+.rsc-ts-user .rsc-ts-bubble {
+    border-radius: 18px 18px 18px 0px !important;
+}
+
+.rsc-container {
+    border-radius: 0 !important;
+}
