@@ -4,14 +4,11 @@ import './App.css';
 import ChatBotContainer from "./components/ChatBotContainer/ChatBotContainer";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">בוט חמ״ל קורונה - מידעת</header>
-      <section>
-        <ChatBotContainer/>
-      </section>
-    </div>
-  );
+    return (
+        <>
+            <header className="App-header">בוט חמ״ל קורונה - מידעת</header>
+            <ChatBotContainer />
+        </>
+    );
 }
-
 export default App;
