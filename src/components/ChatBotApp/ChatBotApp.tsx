@@ -53,8 +53,17 @@ export default class ChatBotApp extends Component<
         id: 'vgai',
         component: <VonageAIMsg />,
         waitAction: true,
-        asMessage: true,
-        trigger: 'welcome'
+        asMessage: true
+      },
+      {
+        id: 'more_query',
+        message: 'משהו נוסף שתרצה לדעת?',
+        trigger: 'query'
+      },
+      {
+        id: 'end',
+        message: '♥️',
+        end: true
       }
     ];
   };

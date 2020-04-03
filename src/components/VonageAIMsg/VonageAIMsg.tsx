@@ -18,7 +18,7 @@ export class VonageAIMsg extends Component<any, VonageAIState> {
       result: '',
       trigger: false,
       apiKey:
-        'z1tKfnDm0QUKKn+OqhJxLUaPIoQG8DMSsk83Si3WxyXgLNXXXCqpzP2c90S2r+SySL+4YIP16EPnuWq6KYAI53MR6rc+Y8M24KV/OrnCay56xjOjyFeGnws+imK1HSZYRfJlGGnheZ7uXA==',
+        'OUx111CSASUC2MvEUPwwa9IwZr6gABICe4l6HsbCgCyLC6+f4yt1AoOIwsWnoBsSRGZPOi7C6DMBobr/utHasBoUCu5nt+Rp4T9XYL176K+q08chELYdil7BNVcx9rReEMk26kyFW5ed2w==',
       sessionId: this.generateSession(new Date())
     };
 
@@ -56,20 +56,28 @@ export class VonageAIMsg extends Component<any, VonageAIState> {
     });
 
     const nluResponse = await httpResponse.json();
-    const botResponse = nluResponse.say.sentencesAsOneLine;
+    const botResponse: string = nluResponse.say.sentencesAsOneLine;
 
     // TODO: if bot response contain 'לא הצלחתי להבין' should trigger a new question,
     // if bot response is an answer should trigger 'should_another_question' step...
 
-    // this.setState({ result: botResponse, loading: false });
-    const stepId = 'welcome';
+    this.setState({ result: botResponse, loading: false });
+
+    let stepId: string;
+    if (botResponse.includes('לנסח')) {
+      stepId = 'query';
+    } else if (botResponse.includes('תישארו בבית')) {
+      stepId = 'end';
+    } else {
+      stepId = 'more_query';
+    }
+
     this.triggerNext(stepId, botResponse);
   }
 
-  triggerNext(stepId: string, botResponse: string) {
+  triggerNext(stepId: string, value: string) {
     this.setState({ trigger: true }, () => {
-      // 
-      this.props.triggerNextStep({});
+      this.props.triggerNextStep({ value, trigger: stepId });
     });
   }
 
