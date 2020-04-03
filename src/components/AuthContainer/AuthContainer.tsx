@@ -20,7 +20,7 @@ interface ILocalState {
 // @ts-ignore
 const styles: StyleRulesCallback = ({ palette, spacing }) => ({
     cardContainer: {
-        width: "50%",
+        width: "20%",
         padding: "1em",
         margin: "auto",
 
