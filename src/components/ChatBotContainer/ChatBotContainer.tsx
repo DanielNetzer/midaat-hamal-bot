@@ -9,7 +9,8 @@ export default class ChatBotContainer extends Component<IProps> {
   };
 
   public render() {
-    return this.state.isAuthorized ? (
+    const { isAuthorized } = this.state;
+    return isAuthorized ? (
       <ChatBotApp />
     ) : (
       <AuthContainer onFormSubmit={this.validateAuth} />

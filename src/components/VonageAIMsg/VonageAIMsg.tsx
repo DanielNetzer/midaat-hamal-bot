@@ -61,12 +61,15 @@ export class VonageAIMsg extends Component<any, VonageAIState> {
     // TODO: if bot response contain 'לא הצלחתי להבין' should trigger a new question,
     // if bot response is an answer should trigger 'should_another_question' step...
 
-    this.setState({ result: botResponse, loading: false });
+    // this.setState({ result: botResponse, loading: false });
+    const stepId = 'welcome';
+    this.triggerNext(stepId, botResponse);
   }
 
-  triggerNext() {
+  triggerNext(stepId: string, botResponse: string) {
     this.setState({ trigger: true }, () => {
-      this.props.triggerNextStep();
+      // 
+      this.props.triggerNextStep({});
     });
   }
 
