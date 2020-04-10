@@ -18,7 +18,7 @@ export default class ChatBotContainer extends Component<IProps> {
   }
 
   private validateAuth = (user: string, pass: string) => {
-    if (user === 'midaatchatbot' && pass === '!WhatsappDoc!1') {
+    if (user === 'midaatchatbot' && pass === 'WhatsappDoc!1!') {
       // if (user === '1' && pass === '1') {
       const newState = this.state;
       newState.isAuthorized = true;
